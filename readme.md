@@ -56,3 +56,41 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Configrar permisos especiales(https://tecadmin.net/install-laravel-framework-on-centos/)
+
+La instalación de dependencias llevará algún tiempo. Después de eso, establezca los permisos adecuados 
+en los archivos.
+
+chown -R apache.apache /var/www/html/admintectdesa/*
+chmod -R 755 /var/www/html/admintectdesa/*
+chmod -R 755 /var/www/html/admintectdesa/storage/*
+
+Los sistemas habilitados con SELinux también ejecutan el siguiente comando para permitir la escritura 
+en el directorio de almacenamiento.
+chcon -R -t httpd_sys_rw_content_t /var/www/html/admintectdesa/storage/*
+
+## crear un host virtual Apache
+Ahora agregue un host virtual en su archivo de configuración de Apache para acceder al 
+marco Laravel desde el navegador web. Para hacerlo, edite el archivo de configuración 
+de Apache /etc/httpd/conf/httpd.conf y agregue el siguiente código al final del archivo
+
+
+nano vim /etc/httpd/conf/httpd.conf
+´´
+<VirtualHost *:80>
+       ServerName laravel.example.com
+       DocumentRoot /var/www/laravel/public
+
+       <Directory /var/www/laravel>
+              AllowOverride All
+       </Directory>
+</VirtualHost>
+´´
+
+
+Reinicie el servicio Apache y acceda al marco Laravel utilizando su navegador web 
+favorito y comience a desarrollar una excelente aplicación web.
+
+service httpd restart
