@@ -63,13 +63,17 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 La instalación de dependencias llevará algún tiempo. Después de eso, establezca los permisos adecuados 
 en los archivos.
 
+```markdown
 chown -R apache.apache /var/www/html/admintectdesa/*
 chmod -R 755 /var/www/html/admintectdesa/*
 chmod -R 755 /var/www/html/admintectdesa/storage/*
+```
 
 Los sistemas habilitados con SELinux también ejecutan el siguiente comando para permitir la escritura 
 en el directorio de almacenamiento.
+```markdown
 chcon -R -t httpd_sys_rw_content_t /var/www/html/admintectdesa/storage/*
+```
 
 ## crear un host virtual Apache
 Ahora agregue un host virtual en su archivo de configuración de Apache para acceder al 
@@ -78,7 +82,7 @@ de Apache /etc/httpd/conf/httpd.conf y agregue el siguiente código al final del
 
 
 nano vim /etc/httpd/conf/httpd.conf
-´´
+```xml
 <VirtualHost *:80>
        ServerName laravel.example.com
        DocumentRoot /var/www/laravel/public
@@ -87,10 +91,11 @@ nano vim /etc/httpd/conf/httpd.conf
               AllowOverride All
        </Directory>
 </VirtualHost>
-´´
+```
 
 
 Reinicie el servicio Apache y acceda al marco Laravel utilizando su navegador web 
 favorito y comience a desarrollar una excelente aplicación web.
-
+```markdown
 service httpd restart
+```
