@@ -22,6 +22,11 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
+                                @if ($errors->has('active'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('active') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
