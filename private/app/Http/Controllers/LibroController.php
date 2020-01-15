@@ -25,9 +25,7 @@ class LibroController extends Controller
     public function index()
     {
         $libros = Libro::orderBy('id','DESC')->paginate(3);
-        return view('libro.index', [
-            'libros' => $libros
-        ]); 
+        return view('libro.index', ['libros' => $libros]); 
     }
 
     /**
@@ -39,7 +37,8 @@ class LibroController extends Controller
     {
         $libro = new Libro();
         return view('libro.form', [
-            'libro' => $libro
+            'libro' => $libro, 
+            'action' => '/libro/insert'
         ]);
     }
     
@@ -49,35 +48,54 @@ class LibroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function edit($id)
     {
         $libro = Libro::find($id);
         return view('libro.form', [
-            'libro' => $libro
+            'libro' => $libro, 
+            'action' => '/libro/update'
         ]);
     }
 
+    private function rules() 
+    {
+        return [ 
+            'nombre'=>'required|max:20', 
+            'resumen'=>'required|max:100', 
+            'npagina'=>'required|numeric', 
+            'edicion'=>'required|numeric', 
+            'autor'=>'required|max:50', 
+            'npagina'=>'required|numeric', 
+            'precio'=>'required|numeric'
+        ];
+    }
+
     /**
-     * Store a newly created resource in storage.
+     * created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function save(Request $request)
+    public function insert(Request $request)
     {
-        $this->validate($request,[ 'nombre'=>'required', 'resumen'=>'required', 'npagina'=>'required', 'edicion'=>'required', 'autor'=>'required', 'npagina'=>'required', 'precio'=>'required']);
+        $this->validate($request, $this->rules());
         
-        $libro = libro::find($request->id);
-        
-        if ($libro == null) 
-        {
-            Libro::create($request->all());
-        }
-        else
-        { 
-            $libro->update($request->all());
-        }
-        
+        Libro::create($request->all());
+        return redirect('/libro')->with('success','Registro guardado satisfactoriamente');
+    }
+
+    /**
+     * update resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        $this->validate($request, $this->rules());
+
+        $libro = Libro::find($request->id);
+        $libro->update($request->all());
         return redirect('/libro')->with('success','Registro guardado satisfactoriamente');
     }
 
@@ -89,7 +107,8 @@ class LibroController extends Controller
      */
     public function delete($id)
     {
-        Libro::find($id)->delete();
+        $libro = Libro::find($id);
+        $libro->delete();
         return redirect('/libro')->with('success','Registro eliminado satisfactoriamente');
     }
 }

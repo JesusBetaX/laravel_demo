@@ -13,9 +13,11 @@
 
 Auth::routes();
 Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
 
 Route::get('/libro', 'LibroController@index');
 Route::get('/libro/add', 'LibroController@add');
-Route::get('/libro/show/{id}', 'LibroController@show');
-Route::post('/libro/save', 'LibroController@save');
+Route::post('/libro/insert', 'LibroController@insert');
+Route::get('/libro/edit/{id}', 'LibroController@edit');
+Route::post('/libro/update', 'LibroController@update');
 Route::get('/libro/delete/{id}', 'LibroController@delete');

@@ -13,10 +13,11 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+    <div id="app" style="padding-top: 90px;">
+        <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
 
@@ -76,21 +77,37 @@
             </div>
         </nav>
 
-        @if(Session::has('success'))
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-		        <div class="alert alert-info alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert">&times;</button>
-			        <p>{{Session::get('success')}}</p>
-                </div>
+        @if(Session::has('error'))
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+		      
+              <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+			    <p>{{Session::get('error')}}</p>
+              </div>
+            
             </div>
-        </div>
+          </div>
+		@endif
+
+        @if(Session::has('success'))
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+		      
+              <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+			    <p>{{Session::get('success')}}</p>
+              </div>
+            
+            </div>
+          </div>
 		@endif
 
         @yield('content')
-    </div>
+    </div> <!-- end app -->
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 </html>

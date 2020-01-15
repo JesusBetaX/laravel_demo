@@ -58,11 +58,10 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 
-## Configrar permisos especiales(https://tecadmin.net/install-laravel-framework-on-centos/)
+## Configurar permisos especiales(https://tecadmin.net/install-laravel-framework-on-centos/)
 
 La instalación de dependencias llevará algún tiempo. Después de eso, establezca los permisos adecuados 
 en los archivos.
-
 ```markdown
 chown -R apache.apache /var/www/html/admintectdesa/*
 chmod -R 755 /var/www/html/admintectdesa/*
