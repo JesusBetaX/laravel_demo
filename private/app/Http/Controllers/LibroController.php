@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Libro;
+use App\Models\Libro;
 
 class LibroController extends Controller
 {
@@ -24,7 +24,7 @@ class LibroController extends Controller
      */
     public function index()
     {
-        $libros = Libro::orderBy('id','DESC')->paginate(3);
+        $libros = Libro::orderBy('id','DESC')->paginate(7);
         return view('libro.index', ['libros' => $libros]); 
     }
 

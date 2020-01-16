@@ -58,6 +58,43 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 
+## Crear un proyecto nuevo
+```markdown
+composer create-project laravel/laravel mi-proyecto-laravel 5.5.*
+```
+
+## Crear un modelo
+```markdown
+php artisan make:model Flight
+```
+
+## Crear un controlador 
+```markdown
+php artisan make:controller FlightController
+```
+
+## Generar un keygen
+```markdown
+php artisan key:generate
+```
+
+## Crear un login
+```markdown
+php artisan make:auth
+```
+
+## Definir una tabla de la base de datos
+```markdown
+ php artisan make:migration create_flights_table
+```
+
+## Crear tablas en la base de datos.
+```markdown
+php artisan migrate
+```
+
+
+
 ## Configurar permisos especiales(https://tecadmin.net/install-laravel-framework-on-centos/)
 
 La instalación de dependencias llevará algún tiempo. Después de eso, establezca los permisos adecuados 
@@ -72,29 +109,4 @@ Los sistemas habilitados con SELinux también ejecutan el siguiente comando para
 en el directorio de almacenamiento.
 ```markdown
 chcon -R -t httpd_sys_rw_content_t /var/www/html/admintectdesa/storage/*
-```
-
-## crear un host virtual Apache
-Ahora agregue un host virtual en su archivo de configuración de Apache para acceder al 
-marco Laravel desde el navegador web. Para hacerlo, edite el archivo de configuración 
-de Apache /etc/httpd/conf/httpd.conf y agregue el siguiente código al final del archivo
-
-
-nano vim /etc/httpd/conf/httpd.conf
-```xml
-<VirtualHost *:80>
-       ServerName laravel.example.com
-       DocumentRoot /var/www/laravel/public
-
-       <Directory /var/www/laravel>
-              AllowOverride All
-       </Directory>
-</VirtualHost>
-```
-
-
-Reinicie el servicio Apache y acceda al marco Laravel utilizando su navegador web 
-favorito y comience a desarrollar una excelente aplicación web.
-```markdown
-service httpd restart
 ```
