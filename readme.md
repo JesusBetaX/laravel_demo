@@ -58,37 +58,37 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 
-### Crear un proyecto nuevo
+#### Crear un proyecto nuevo
 ```markdown
 composer create-project laravel/laravel mi-proyecto-laravel 5.5.*
 ```
 
-### Crear un modelo
+#### Crear un modelo
 ```markdown
 php artisan make:model Flight
 ```
 
-### Crear un controlador 
+#### Crear un controlador 
 ```markdown
 php artisan make:controller FlightController
 ```
 
-### Generar un keygen
+#### Generar un keygen
 ```markdown
 php artisan key:generate
 ```
 
-### Crear un login
+#### Crear un login
 ```markdown
 php artisan make:auth
 ```
 
-### Definir una tabla de la base de datos
+#### Definir una tabla de la base de datos
 ```markdown
  php artisan make:migration create_flights_table
 ```
 
-### Crear tablas en la base de datos.
+#### Crear tablas en la base de datos.
 ```markdown
 php artisan migrate
 ```
