@@ -2,6 +2,44 @@
 @section('content')
 <div class="row">
   <section class="content">
+
+    <!-- Filtros -->
+    <div class="col-md-10 col-md-offset-1">
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <span class="navbar-brand">
+              <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+            </span>
+          </div>
+          <div style="padding-right: 38px">
+            <form method="GET" action="{{ url('/libro') }}" class="navbar-form navbar-right">
+              {{ csrf_field() }}
+              
+              <div class="form-group">
+                <input type="text" name="nombre" value="{{ $nombre }}" class="form-control" data-toggle="tooltip" data-placement="top" title="Nombre">
+              </div>
+              
+              <div class="form-group">
+                <input type="text" name="resumen" value="{{ $resumen }}" class="form-control" data-toggle="tooltip" data-placement="top" title="Resumen">
+              </div>
+              
+              <div class="form-group">
+                <input type="text" name="edicion" value="{{ $edicion }}"class="form-control" data-toggle="tooltip" data-placement="top" title="Edicion">
+              </div>
+              
+              <div class="form-group">
+                <input type="text" name="autor" value="{{ $autor }}" class="form-control" data-toggle="tooltip" data-placement="top" title="Autor">
+              </div>
+              
+              <button type="submit" class="btn btn-success">Buscar</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Listado de la tabla -->
     <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
         
@@ -65,6 +103,7 @@
 
       </div><!-- end panel panel-default -->
     </div><!-- col -->
+
   </section>
 </div>
 @endsection

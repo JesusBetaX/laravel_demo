@@ -16,7 +16,7 @@
 
 </head>
 <body>
-    <div id="app" style="padding-top: 90px;">
+    <div id="app" style="padding-top: 72px;">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -108,6 +108,12 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
 
 </body>
 </html>

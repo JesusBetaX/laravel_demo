@@ -15,6 +15,8 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
+Route::get('/get_nombre_libros', 'HomeController@get_nombre_libros');
+
 Route::get('/libro', 'LibroController@index');
 Route::get('/libro/add', 'LibroController@add');
 Route::post('/libro/insert', 'LibroController@insert');

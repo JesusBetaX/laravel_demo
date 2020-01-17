@@ -22,10 +22,24 @@ class LibroController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $libros = Libro::orderBy('id','DESC')->paginate(7);
-        return view('libro.index', ['libros' => $libros]); 
+        $keys = ['nombre','resumen','edicion','autor'];
+        $params = array();
+
+        $sql = Libro::orderBy('id','DESC');
+        
+        foreach ($keys as $key) {
+            $value = $request->$key;
+            if (!empty($value)) {
+                $sql->where($key, 'LIKE', "%$value%");
+            }
+            $params[$key] = $value;
+        }       
+        
+        $params['libros'] = $sql->paginate(7);
+
+        return view('libro.index', $params); 
     }
 
     /**
@@ -94,8 +108,7 @@ class LibroController extends Controller
     {
         $this->validate($request, $this->rules());
 
-        $libro = Libro::find($request->id);
-        $libro->update($request->all());
+        Libro::find($request->id)->update($request->all());
         return redirect('/libro')->with('success','Registro guardado satisfactoriamente');
     }
 
@@ -107,8 +120,7 @@ class LibroController extends Controller
      */
     public function delete($id)
     {
-        $libro = Libro::find($id);
-        $libro->delete();
+        Libro::find($id)->delete();
         return redirect('/libro')->with('success','Registro eliminado satisfactoriamente');
     }
 }
